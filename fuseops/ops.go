@@ -356,6 +356,10 @@ type CreateFileOp struct {
 	// later call to ReleaseFileHandle.
 	Handle    HandleID
 	OpContext OpContext
+
+	// The flags from the open(2) call, passed through the kernel's fuse driver
+	// to the FUSE daemon.
+	OpenFlags fusekernel.OpenFlags
 }
 
 // Create a symlink inode. If the name already exists, the file system should
@@ -681,6 +685,8 @@ type OpenFileOp struct {
 	// advance, for example, because contents are generated on the fly.
 	UseDirectIO bool
 
+	// The flags from the open(2) call, passed through the kernel's fuse driver
+	// to the FUSE daemon.
 	OpenFlags fusekernel.OpenFlags
 
 	OpContext OpContext
