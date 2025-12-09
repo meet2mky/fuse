@@ -121,6 +121,9 @@ func (s *fileSystemServer) ServeOps(c *fuse.Connection) {
 			// flurry from the kernel and are generally
 			// cheap for the file system to handle
 			s.handleOp(c, ctx, op)
+		} else if _, ok := op.(*fuseops.ReadFileOp); ok {
+			// Call the read file op in the same go routine for testing go routine re-use.
+			s.handleOp(c, ctx, op)
 		} else {
 			go s.handleOp(c, ctx, op)
 		}
