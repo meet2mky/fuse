@@ -55,7 +55,7 @@ func Mount(
 
 	// Begin the mounting process, which will continue in the background.
 	if config.DebugLogger != nil {
-		config.DebugLogger.Println("Beginning the mounting kickoff process")
+		config.DebugLogger.Println("Beginning the mounting kickoff process -------------------------------")
 	}
 	ready := make(chan error, 1)
 	dev, err := mount(dir, config, ready)
